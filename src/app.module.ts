@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { AppConstant } from './common/constant/app.constant';
 import { UserModule } from './user/user.module';
+import { ProductModule } from './product/product.module';
 
 const dbUrlString = `mongodb://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`;
 console.log(dbUrlString, 'dbUrlString');
@@ -13,7 +14,8 @@ console.log(dbUrlString, 'dbUrlString');
       signOptions: { expiresIn: AppConstant.AccessTokenExpiresIn },
     }),
     MongooseModule.forRoot(dbUrlString),
-    UserModule
+    UserModule,
+    ProductModule
   ],
 })
 export class AppModule implements NestModule {
